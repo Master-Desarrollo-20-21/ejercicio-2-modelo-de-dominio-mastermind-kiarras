@@ -1,0 +1,15 @@
+@startuml instructions
+
+[*] --> A
+A --> B: put SecretCode
+B --> C: put CheckCode
+C --> D: put ControlCode
+C --> F : [isSecretCode]
+F --> G : Put new Score
+G --> A : put New SecretCode
+G --> [*] :[ScoredCompleted]
+D --> E : [isControlCodeWhite]
+D --> E : [noControlCode]
+E --> C : change Color
+D --> G : [errorControlCode]
+@enduml

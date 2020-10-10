@@ -1,0 +1,133 @@
+@startuml marstermine-initial
+together {
+object ":CheckRow" as CheckRow1 {
+    CheckCode = random
+}
+object ":CheckRow" as CheckRow2
+object ":CheckRow" as CheckRow3
+object ":CheckRow" as CheckRow4
+object ":CheckRow" as CheckRow5
+object ":CheckRow" as CheckRow6
+object ":CheckRow" as CheckRow7
+object ":CheckRow" as CheckRow8
+object ":CheckRow" as CheckRow9
+object ":CheckRow" as CheckRow10
+object ":CheckRow" as CheckRow11
+object ":CheckRow" as CheckRow12
+}
+
+together {
+object ":ControlRow" as ControlRow1
+object ":ControlRow" as ControlRow2
+object ":ControlRow" as ControlRow3
+object ":ControlRow" as ControlRow4
+object ":ControlRow" as ControlRow5
+object ":ControlRow" as ControlRow6
+object ":ControlRow" as ControlRow7
+object ":ControlRow" as ControlRow8
+object ":ControlRow" as ControlRow9
+object ":ControlRow" as ControlRow10
+object ":ControlRow" as ControlRow11
+object ":ControlRow" as ControlRow12
+}
+
+object ":SecretRow" as SecretRow{
+    SecretCode = random
+}
+
+together {
+object ":ScoreRow" as ScoreRow1{
+    Score = SpikeRed
+    Score = SpikeBlue
+}
+object ":ScoreRow" as ScoreRow2
+object ":ScoreRow" as ScoreRow3
+object ":ScoreRow" as ScoreRow4
+object ":ScoreRow" as ScoreRow5
+object ":ScoreRow" as ScoreRow6
+object ":ScoreRow" as ScoreRow7
+object ":ScoreRow" as ScoreRow8
+object ":ScoreRow" as ScoreRow9
+object ":ScoreRow" as ScoreRow10
+object ":ScoreRow" as ScoreRow11
+object ":ScoreRow" as ScoreRow12
+}
+
+object ":Board" as Board
+Board -up-> SecretRow
+
+Board --> CheckRow1
+Board --> CheckRow2
+Board --> CheckRow3
+Board --> CheckRow4
+Board --> CheckRow5
+Board --> CheckRow6
+Board --> CheckRow7
+Board --> CheckRow8
+Board --> CheckRow9
+Board --> CheckRow10
+Board --> CheckRow11
+Board --> CheckRow12
+
+CheckRow1 -[hidden]down-> CheckRow2
+CheckRow2 -[hidden]down-> CheckRow3
+CheckRow3 -[hidden]down-> CheckRow4
+CheckRow4 -[hidden]down-> CheckRow5
+CheckRow5 -[hidden]down-> CheckRow6
+CheckRow6 -[hidden]down-> CheckRow7
+CheckRow7 -[hidden]down-> CheckRow8
+CheckRow8 -[hidden]down-> CheckRow9
+CheckRow9 -[hidden]down-> CheckRow10
+CheckRow10 -[hidden]down-> CheckRow11
+CheckRow11 -[hidden]down-> CheckRow12
+
+Board -> ControlRow1
+Board -> ControlRow2
+Board -> ControlRow3
+Board -> ControlRow4
+Board -> ControlRow5
+Board -> ControlRow6
+Board -> ControlRow7
+Board -> ControlRow8
+Board -> ControlRow9
+Board -> ControlRow10
+Board -> ControlRow11
+Board -> ControlRow12
+
+ControlRow1 -[hidden]down-> ControlRow2
+ControlRow2 -[hidden]down-> ControlRow3
+ControlRow3 -[hidden]down-> ControlRow4
+ControlRow4 -[hidden]down-> ControlRow5
+ControlRow5 -[hidden]down-> ControlRow6
+ControlRow6 -[hidden]down-> ControlRow7
+ControlRow7 -[hidden]down-> ControlRow8
+ControlRow8 -[hidden]down-> ControlRow9
+ControlRow9 -[hidden]down-> ControlRow10
+ControlRow10 -[hidden]down-> ControlRow11
+ControlRow11 -[hidden]down-> ControlRow12
+
+Board ---> ScoreRow1
+Board ---> ScoreRow2
+Board ---> ScoreRow3
+Board ---> ScoreRow4
+Board ---> ScoreRow5
+Board ---> ScoreRow6
+Board ---> ScoreRow7
+Board ---> ScoreRow8
+Board ---> ScoreRow9
+Board ---> ScoreRow10
+Board ---> ScoreRow11
+Board ---> ScoreRow12
+
+ScoreRow1 -[hidden]down-> ScoreRow2
+ScoreRow2 -[hidden]down-> ScoreRow3
+ScoreRow3 -[hidden]down-> ScoreRow4
+ScoreRow4 -[hidden]down-> ScoreRow5
+ScoreRow5 -[hidden]down-> ScoreRow6
+ScoreRow6 -[hidden]down-> ScoreRow7
+ScoreRow7 -[hidden]down-> ScoreRow8
+ScoreRow8 -[hidden]down-> ScoreRow9
+ScoreRow9 -[hidden]down-> ScoreRow10
+ScoreRow10 -[hidden]down-> ScoreRow11
+ScoreRow11 -[hidden]down-> ScoreRow12
+@enduml

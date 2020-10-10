@@ -1,0 +1,64 @@
+@startuml mastermind
+Mastermind *-down-> Board
+Mastermind *-down-> "2" Player
+Mastermind *-down-> Turn
+
+Board *---> "27" Row
+together {
+Row <|-down-"12" CheckRow
+Row <|-down-"12" ControlRow
+Row <|-down-"1" SecretRow
+Row <|-down-"2" ScoreRow
+}
+
+Row o-down-> Code
+Row o-down-> Score
+Row o-down-> ControlCode
+
+together {
+Player *-down-> Code
+Player *-down-> ControlCode
+Player *-down-> Score
+}
+Player --> Board
+Player o--> Goal
+
+Action <|-down- SecretCodeAction
+Action <|-down- CheckCodeAction
+Action <|-down- ControlCodeAction
+Action <|-down- ScoreAction
+
+Turn ---> "2" Player
+
+Code *-down-> "5" Color
+together {
+Code <|-down- SecretCode
+Code <|-down- CheckCode
+}
+ControlCode *-down-> "0..4" SpikeControl
+Score *-down-> SpikeScore
+
+Color <|--- Red
+Color <|--- Blue
+Color <|--- Green
+Color <|--- Yellow
+Color <|--- Pink
+Color <|--- White
+Color <|--- Black
+Color <|--- Brown
+
+SpikeControl <|-down- SpikeBlack
+SpikeControl <|-down- SpikeWhite
+SpikeScore <|-down- SpikeRed
+SpikeScore <|-down- SpikeBlue
+
+Goal ..> "12" CheckCodeAction
+Goal ..> "1" SecretCodeAction
+Goal ..> "12" ControlCodeAction
+Goal ..> "1..12" ScoreAction
+
+Action ..> Color
+Action ..> SpikeScore
+Action ..> SpikeControl
+Action ..> Row : target
+@enduml
