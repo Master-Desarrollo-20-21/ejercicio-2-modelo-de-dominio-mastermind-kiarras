@@ -5,20 +5,21 @@ Mastermind *-down-> Turn
 
 Board *---> "27" Row
 together {
-Row <|-down-"12" CheckRow
-Row <|-down-"12" ControlRow
-Row <|-down-"1" SecretRow
+Row <|-down- "12" CheckRow
+Row <|-down- "12" ControlRow
+Row <|-down- SecretRow
 Row <|-down-"2" ScoreRow
 }
 
-Row o-down-> Code
-Row o-down-> Score
-Row o-down-> ControlCode
+CheckRow o-down-> Code
+SecretRow o-down-> Code
+ScoreRow o-down-> Score
+ControlRow o-down-> ControlCode
 
 together {
-Player *-down-> Code
-Player *-down-> ControlCode
-Player *-down-> Score
+Player o-down-> Code
+Player o-down-> ControlCode
+Player o-down-> Score
 }
 Player --> Board
 Player o--> Goal
@@ -27,7 +28,7 @@ Action <|-down- SecretCodeAction
 Action <|-down- CheckCodeAction
 Action <|-down- ControlCodeAction
 Action <|-down- ScoreAction
-
+Action <|-down- WinAction
 Turn ---> "2" Player
 
 Code *-down-> "5" Color
@@ -47,15 +48,12 @@ Color <|--- White
 Color <|--- Black
 Color <|--- Brown
 
-SpikeControl <|-down- SpikeBlack
-SpikeControl <|-down- SpikeWhite
+SpikeControl <|-down- SpikeFullOk
+SpikeControl <|-down- SpikeColorOk
 SpikeScore <|-down- SpikeRed
 SpikeScore <|-down- SpikeBlue
 
-Goal ..> "12" CheckCodeAction
-Goal ..> "1" SecretCodeAction
-Goal ..> "12" ControlCodeAction
-Goal ..> "1..12" ScoreAction
+Goal ..> WinAction
 
 Action ..> Color
 Action ..> SpikeScore
