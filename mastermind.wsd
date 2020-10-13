@@ -3,27 +3,26 @@ Mastermind *-down-> Board
 Mastermind *-down-> "2" Player
 Mastermind *-down-> Turn
 
-Board *---> "27" Row
-together {
-Row <|-down- "12" CheckRow
-Row <|-down- "12" ControlRow
-Row <|-down- SecretRow
-Row <|-down-"2" ScoreRow
-}
+Board o-down-> "0..12" CheckCode
 
-CheckRow o-down-> Code
-SecretRow o-down-> Code
-ScoreRow o-down-> Score
-ControlRow o-down-> ControlCode
+Board o-down-> "0..12" ControlLine
+Board o-down-> SecretCode
+Board o-down-> "2" ScoreLine
 
-together {
-Player o-down-> Code
-Player o-down-> ControlCode
-Player o-down-> Score
-}
+ScoreLine o-down-> Score
+
+
+PlayerCheckerCode o---> CheckCode
+PlayerMakerCode o---> SecretCode
+PlayerMakerCode o---> ControlLine
+Player o---> Score
+
 Player --> Board
-Player o--> Goal
-
+Player o---> Goal
+together {
+Player <|-- PlayerMakerCode
+Player <|-- PlayerCheckerCode
+}
 Action <|-down- SecretCodeAction
 Action <|-down- CheckCodeAction
 Action <|-down- ControlCodeAction
@@ -31,12 +30,13 @@ Action <|-down- ScoreAction
 Action <|-down- WinAction
 Turn ---> "2" Player
 
-Code *-down-> "5" Color
-together {
+
+Code *---> "5" Color
 Code <|-down- SecretCode
 Code <|-down- CheckCode
-}
-ControlCode *-down-> "0..4" SpikeControl
+Code --> Position
+
+ControlLine *-down-> "0..5" SpikeControl
 Score *-down-> SpikeScore
 
 Color <|--- Red
@@ -54,9 +54,10 @@ SpikeScore <|-down- SpikeRed
 SpikeScore <|-down- SpikeBlue
 
 Goal ..> WinAction
+Goal ..> CheckCodeAction
 
 Action ..> Color
 Action ..> SpikeScore
 Action ..> SpikeControl
-Action ..> Row : target
+Action ..> Board : target
 @enduml
